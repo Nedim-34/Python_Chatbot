@@ -42,18 +42,20 @@ about_chatbot = {"name": ["Pybot"],
                 "age": ["5 days but still growing"]}
 
 
-motivation_and_study = {"How can I improve myself?",
-"How can I help you more efficiently?",
-"Is the world spherical or flat?",
-"What is the weight of each single continent of Earth?"}
+motivation_and_study = {"motivation motivate tip":["Never give up and keep work hard?"],
+                        "study help":["Create a dedicated study schedule to manage your time effectively.",
+                                    "Use active learning techniques, such as summarizing information or teaching it to someone else.",
+                                    "Take regular breaks to maintain focus and avoid burnout."],
+                        "focus focusing meditation":["take a deep breathe,  and focus on your goals",
+                                                      "Practice deep breathing for a few minutes to center your mind.",
+                                                              "Set a timer for short meditation sessions to build consistency."]}
 
-cities_weather = {
-    "berlin": ["sunny", "rainy", "cloudy", "windy", "snowy"],
-    "paris": ["sunny", "rainy", "cloudy", "windy", "snowy"],
-    "rome": ["sunny", "rainy", "cloudy", "windy", "snowy"],
-    "prague": ["sunny", "rainy", "cloudy", "windy", "snowy"],
-    "sofia": ["sunny", "rainy", "cloudy", "windy", "snowy"]
-}
+cities_weather = {"berlin weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"],
+"paris weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"],
+"rome weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"],
+"barcelona weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"],
+"london weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"]}
+
 
 
 food = {"breakfast":["Oatmeal with Fruits: Warm oatmeal topped with sliced bananas and berries.",
@@ -63,16 +65,14 @@ food = {"breakfast":["Oatmeal with Fruits: Warm oatmeal topped with sliced banan
         "dinner":["Grilled Chicken with Veggies: Marinated grilled chicken served with steamed vegetables.",
                 "Spaghetti Aglio e Olio: Spaghetti tossed with garlic, olive oil, and chili flakes."]}
 
-goodbye_greetings = {"greeting1": "Goodbye! It was great chatting with you. Have a wonderful day!",
-                    "greeting2": "See you later! Don't be a stranger!",
-                    "greeting3": "Take care! Looking forward to our next conversation!",
-                    "greeting4": "Farewell! Wishing you all the best until we chat again!"}
+goodbye_greetings = {"goodbye": ["Goodbye! It was great chatting with you. Have a wonderful day!","See you later! Don't be a stranger!","Take care! Looking forward to our next conversation!","Farewell! Wishing you all the best until we chat again!"],
+                    "bye":["Goodbye! It was great chatting with you. Have a wonderful day!","See you later! Don't be a stranger!","Take care! Looking forward to our next conversation!","Farewell! Wishing you all the best until we chat again!"],
+                    "bye bye":["Goodbye! It was great chatting with you. Have a wonderful day!","See you later! Don't be a stranger!","Take care! Looking forward to our next conversation!","Farewell! Wishing you all the best until we chat again!"],
+                    "farewell":["Goodbye! It was great chatting with you. Have a wonderful day!","See you later! Don't be a stranger!","Take care! Looking forward to our next conversation!","Farewell! Wishing you all the best until we chat again!"]}
 
-fallback_responses = [
-    "Sorry, I don’t understand that yet.",
-    "Hmm… I don’t know, but I’ll learn someday!",
-    "I haven’t reached your intellect yet, but one day I will 🤖✨"
-]
+fallback_responses = [ "That’s an interesting thought! Could you elaborate a bit more?",
+    "That seems a bit unclear. Can you provide more details?",
+    "I’m here to help, but I need a bit more context. What do you mean?"]
 
 
 # ---- chatbot loop ----
