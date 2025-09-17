@@ -42,7 +42,7 @@ greeting = {"hello": "Hi there! How can I help you today?",
 from datetime import datetime
 date_time = {"current_date": datetime.now().strftime('%Y-%m-%d'),
             "current_time": datetime.now().strftime('%H:%M:%S')}
-print(date_time)
+
 
 #math helper
 
