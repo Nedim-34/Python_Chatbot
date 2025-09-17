@@ -85,23 +85,41 @@ joke_number_7 = jokes["joke7"]
 print(joke_number_7)
 
 #about chatbot
-
 about_chatbot = {"name": "pybot",
                 "creator": "umi_waqar_Nedim",
                 "purpose": "Assist users with various queries and provide information.",
                 "age": 10}
+
+def get_chatbot_info(query):
+        about_chatbot = {"name": "pybot",
+                        "creator": "umi_waqar_Nedim",
+                        "purpose": "Assist users with various queries and provide information.",
+                        "age": 10}
+        if "name" in query.lower():
+                        return f"My name is {about_chatbot['name']}."
+        elif "creator" in query.lower():
+                        return f"I was created by {about_chatbot['creator']}."
+        elif "purpose" in query.lower():
+                        return f"My purpose is to {about_chatbot['purpose']}."
+        elif "age" in query.lower():
+                        return f"I am {about_chatbot['age']} years old."
+        else:
+                        return "I'm not sure about that. Can you ask something else?"
+
+
 #motivation and study
-motivation_and_study = {"How can I improve myself?",
-"How can I help you more efficiently?",
-"Is the world spherical or flat?",
-"What is the weight of each single continent of Earth?"}
+
+motivation_and_study = {"motivation1":"How can I improve myself?",
+                        "motivation2":"How can I help you more efficiently?",
+                        "motivation3":"Is the world spherical or flat?",
+                        "motivation4":"What is the weight of each single continent of Earth?"}
 
 #weather
-cities_weather = {"Berlin":["sunny", "rainy", "cloudy", "windy", "snowy"],
-"Paris": ["sunny", "rainy", "cloudy", "windy", "snowy"],
-"Rome":["sunny", "rainy", "cloudy", "windy", "snowy"],
-"Prague":["sunny", "rainy", "cloudy", "windy", "snowy"],
-"Sofia":["sunny", "rainy", "cloudy", "windy", "snowy"]}
+cities_weather = {"Berlin":["sunny 20°", "rainy 10°", "cloudy 5°", "windy 7°", "snowy 1°"],
+"Paris": ["sunny 20°", "rainy 13°", "cloudy 5°", "windy 10°", "snowy 1°"],
+"Rome":["sunny 21°", "rainy", "cloudy", "windy", "snowy 1°"],
+"Barcelona":["sunny 22°", "rainy 15°", "cloudy 18°", "windy 15°", "snowy 1°"],
+"Berlin":["sunny 20°", "rainy", "cloudy", "windy", "snowy 1°"]}
 
 #random facts
 random_facts_2 = {"fact1": "Wombat poop is cube-shaped.",
@@ -109,11 +127,6 @@ random_facts_2 = {"fact1": "Wombat poop is cube-shaped.",
                 "fact3": "Humans share 60% of their DNA with bananas.",
                 "fact4": "The Eiffel Tower can be 15 cm taller during the summer."}
 
-#memory
-memory = {"username": "",
-        "what_is_your_name": "What is your name?",
-        "how_can_i_help_you_today": "How can I help you today?"}
-#food
 food = {"breakfast":["Oatmeal with Fruits: Warm oatmeal topped with sliced bananas and berries.",
                      "Scrambled Eggs: Fluffy scrambled eggs served with whole-grain toast."],
         "lunch":["Caprese Salad: Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze.",
@@ -123,7 +136,7 @@ food = {"breakfast":["Oatmeal with Fruits: Warm oatmeal topped with sliced banan
 
 #Exit goodbye
 
-goodbye_greetings = {"greeting1": "Goodbye! It was great chatting with you. Have a wonderful day!",
-                    "greeting2": "See you later! Don't be a stranger!",
-                    "greeting3": "Take care! Looking forward to our next conversation!",
-                    "greeting4": "Farewell! Wishing you all the best until we chat again!"}
+goodbye_greetings = {"goodbye": "Goodbye! It was great chatting with you. Have a wonderful day!",
+                    "bye": "See you later! Don't be a stranger!",
+                    "bye bye": "Take care! Looking forward to our next conversation!",
+                    "farewell": "Farewell! Wishing you all the best until we chat again!"}
