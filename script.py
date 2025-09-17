@@ -36,10 +36,11 @@ random_facts = [
     "The Eiffel Tower can be 15 cm taller during the summer."
 ]
 
-about_chatbot = {"name": "pybot",
-                "creator": "umi_waqar_Nedim",
-                "purpose": "Assist users with various queries and provide information.",
-                "age": 10}
+about_chatbot = {"name": ["Pybot"],
+                "creator": ["Umi Waqar Nedim"],
+                "purpose": ["Assist users with various queries and provide information."],
+                "age": ["5 days but still growing"]}
+
 
 motivation_and_study = {"How can I improve myself?",
 "How can I help you more efficiently?",
