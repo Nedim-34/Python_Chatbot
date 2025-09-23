@@ -1,4 +1,12 @@
-#### Import
+import tkinter as tk
+from tkinter import scrolledtext
+import random
+import pytz
+import datetime
+import re
+import operator
+
+# ---- Chatbot Logic code ----
 import random
 import pytz
 import datetime
@@ -48,7 +56,7 @@ about_chatbot = {
     "creator": ["Umi Waqar Nedim"],
     "purpose": ["Assist users with various queries and provide information."],
     "age": ["5 days but still growing"],
-    "about you": ["My name is PyBot and was created by Umi Waqar Nedim, I Assist users with various queries and provide information and i´m still 5 days old but still growing"] 
+    "about you": ["My name is PyBot and was created by Umi Waqar Nedim, I Assist users with various queries and provide information and i´m still 5 days old but still growing"]
 }
 
 motivation_and_study = {
@@ -56,10 +64,8 @@ motivation_and_study = {
     #"how can i help you more efficiently?": "You can provide clear and specific questions.",
     #"is the world spherical or flat?": "The Earth is an oblate spheroid, which is a slightly flattened sphere.",
     #"what is the weight of each single continent of earth?": "Continents don't have a single, measurable weight. They are part of the Earth's crust."
-    "motivation motivate tip":["Never give up and keep work hard?"],
-    "study help":["Create a dedicated study schedule to manage your time effectively.",
-                "Use active learning techniques, such as summarizing information or teaching it to someone else.",
-                "Take regular breaks to maintain focus and avoid burnout."],
+    "motivation, motivate tip":["Never give up and keep work hard?"],
+    "study help":["Create a dedicated study schedule to manage your time effectively.", "Use active learning techniques, such as summarizing information or teaching it to someone else.", "Take regular breaks to maintain focus and avoid burnout."],
     "focus focusing meditation":["take a deep breathe, and focus on your goals",
                 "Practice deep breathing for a few minutes to center your mind.",
                 "Set a timer for short meditation sessions to build consistency."]
@@ -74,11 +80,11 @@ cities_weather = {
 }
 
 food = {
-    "breakfast": ["Oatmeal with Fruits: Warm oatmeal topped with sliced bananas and berries.", 
+    "breakfast": ["Oatmeal with Fruits: Warm oatmeal topped with sliced bananas and berries.",
                   "Scrambled Eggs: Fluffy scrambled eggs served with whole-grain toast."],
-    "lunch": ["Caprese Salad: Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze.", 
+    "lunch": ["Caprese Salad: Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze.",
               "Turkey Sandwich: Sliced turkey, lettuce, and tomato on whole grain bread."],
-    "dinner": ["Grilled Chicken with Veggies: Marinated grilled chicken served with steamed vegetables.", 
+    "dinner": ["Grilled Chicken with Veggies: Marinated grilled chicken served with steamed vegetables.",
                "Spaghetti Aglio e Olio: Spaghetti tossed with garlic, olive oil, and chili flakes."]}
 
 goodbye_greetings = {
@@ -124,12 +130,12 @@ def calculate(expression):
     match = re.search(r'(-?\d+\.?\d*)\s*([+\-*/^])\s*(-?\d+\.?\d*)', expression)
     if not match:
         return None, "I can only handle simple calculations like '2 + 2' or '5 * 8'."
-    
+
     try:
         num1 = float(match.group(1))
         op = match.group(2)
         num2 = float(match.group(3))
-        
+
         func = OPERATORS.get(op)
         if func:
             result = func(num1, num2)
@@ -153,92 +159,123 @@ def get_time(city):
     return "I can tell you the time in New York, London, Tokyo, Sydney, Mumbai, Dubai, Moscow, Berlin, or Istanbul."
 
 
-# ---- chatbot loop ----
-topic_dicts = [
-    responses, greetings, about_chatbot, motivation_and_study,
-    cities_weather, food, goodbye_greetings, timezones
-]
+# ---- chatbot logic (modified for GUI) ----
+class ChatbotGUI:
+    def __init__(self, master):
+        self.master = master
+        master.title("PyBot Chatbot")
+        master.geometry("500x600")
 
-##### Python Chatbot Script #####
-def pybot():
-    print("""\n🤖 Welcome to PyBot!  
-Your friendly Python chatbot.
-\n(Type 'exit' to quit.)
-""")
+        self.user_memory = {}
+        self.topic_dicts = [
+            responses, greetings, about_chatbot, motivation_and_study,
+            cities_weather, food, goodbye_greetings, timezones, fallback_responses
+        ]
 
-    user_memory = {}
-    first_interaction = True
-    
-    while True:
-        if first_interaction:
-            print("PyBot: Hello, I'm PyBot! How can I help you?")
-            first_interaction = False
-        
-        user_input = input("You: ").lower()
-        matched = False
+        # Chat window
+        self.chat_window = scrolledtext.ScrolledText(master, state='disabled', wrap='word')
+        self.chat_window.pack(padx=10, pady=10, fill='both', expand=True)
+        self.chat_window.tag_configure('user', foreground='white')
+        self.chat_window.tag_configure('bot', foreground='cyan')
 
-        # Check for memory retrieval first
-        if not matched and "what is my name" in user_input:
-            if "name" in user_memory:
-                print(f"PyBot: Your name is {user_memory['name'].capitalize()}")
+        # Input box and send button
+        self.input_frame = tk.Frame(master)
+        self.input_frame.pack(padx=10, pady=(0, 10), fill='x')
+
+        self.input_box = tk.Entry(self.input_frame)
+        self.input_box.pack(side='left', fill='x', expand=True, padx=(0, 5))
+        self.input_box.bind("<Return>", self.process_user_input)
+
+        self.send_button = tk.Button(self.input_frame, text="Send", command=self.process_user_input)
+        self.send_button.pack(side='right')
+
+        # Initial message
+        self.display_message("PyBot: Hello, I'm PyBot! How can I help you? 👋", 'bot')
+
+    def display_message(self, message, sender):
+        """Displays a message in the chat window."""
+        self.chat_window.config(state='normal')
+        self.chat_window.insert(tk.END, message + "\n\n", sender)
+        self.chat_window.config(state='disabled')
+        self.chat_window.yview(tk.END)
+
+    def process_user_input(self, event=None):
+        """Handles user input and generates a bot response."""
+        user_input = self.input_box.get()
+        if not user_input.strip():
+            return
+
+        self.display_message(f"You: {user_input}", 'user')
+        self.input_box.delete(0, tk.END)
+        self.master.after(500, lambda: self.generate_bot_response(user_input))
+
+    def generate_bot_response(self, user_input):
+        """Generates a response from the chatbot logic."""
+        user_input_lower = user_input.lower()
+        response = None
+
+        # Check for memory retrieval
+        if "what is my name" in user_input_lower:
+            if "name" in self.user_memory:
+                response = f"Your name is {self.user_memory['name'].capitalize()}"
             else:
-                print("PyBot: I don't know your name yet. You can tell me by saying 'my name is [your name]'.")
-            matched = True
+                response = "I don't know your name yet. You can tell me by saying 'my name is [your name]'."
 
-        if not matched and "my name is" in user_input:
-            match = re.search(r'my name is (.+)', user_input)
+        # Check for name setting
+        if not response and "my name is" in user_input_lower:
+            match = re.search(r'my name is (.+)', user_input_lower)
             if match:
                 name = match.group(1).strip()
-                user_memory['name'] = name
-                print(f"PyBot: Hello, {name.capitalize()}! I'll remember that.\n")
-            matched = True
+                self.user_memory['name'] = name
+                response = f"Hello, {name.capitalize()}! I'll remember that."
 
         # Check for math calculation
-        if not matched and any(op in user_input for op in ['+', '-', '*', '/', '^']):
-            result, error = calculate(user_input)
-            if result:
-                print("PyBot:", result)
-            else:
-                print("PyBot:", error)
-            matched = True
-        
-        if not matched:
-            # Check for time-related queries
-            time_match = re.search(r'time in ([\w\s]+)', user_input)
+        if not response and any(op in user_input_lower for op in ['+', '-', '*', '/', '^']):
+            result, error = calculate(user_input_lower)
+            response = result if result else error
+
+        # Check for time-related queries
+        if not response:
+            time_match = re.search(r'time in ([\w\s]+)', user_input_lower)
             if time_match:
                 city = time_match.group(1).strip()
-                print("PyBot:", get_time(city))
-                matched = True
-        
-        # Check jokes and random facts
-        if not matched:
-            if "joke" in user_input:
-                print("PyBot:", random.choice(jokes))
-                matched = True
-            elif "fact" in user_input:
-                print("PyBot:", random.choice(random_facts))
-                matched = True
+                response = get_time(city)
 
-        if not matched:
-            for topic in topic_dicts:
+        # Check jokes and random facts
+        if not response:
+            if "joke" in user_input_lower:
+                response = random.choice(jokes)
+            elif "fact" in user_input_lower:
+                response = random.choice(random_facts)
+
+        # Check general topics
+        if not response:
+            for topic in self.topic_dicts:
                 for key in topic:
-                    if key in user_input:
+                    if key in user_input_lower:
                         if key in motivation_and_study:
-                            reply = topic[key]
+                            response = topic[key]
                         else:
-                            reply = random.choice(topic[key])
-                        print("PyBot:", reply)
-                        matched = True
+                            response = random.choice(topic[key])
                         break
-                if matched:
+                if response:
                     break
 
         # Fallback response if no match is found
-        if not matched:
-            print("PyBot:", random.choice(fallback_responses))
+        if not response:
+            response = random.choice(fallback_responses)
 
-# ---- Run chatbot ----
-pybot()
+        # Display the final response
+        if isinstance(response, list):  # Handle list responses like 'study help'
+            for item in response:
+                self.display_message(f"PyBot: {item}", 'bot')
+        else:
+            self.display_message(f"PyBot: {response}", 'bot')
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ChatbotGUI(root)
+    root.mainloop()
 
 
 
