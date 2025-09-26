@@ -49,7 +49,7 @@ about_chatbot = {
     "language speak languages": ["I can understand and respond in English."],
     "hobby hobbies": ["I enjoy chatting and helping people learn new things!"],
     "skills skill abilities": ["I can tell jokes, share facts, provide study tips, and more!"],
-    "about": ["My name is PyBot and was created by Umi Waqar Nedim, I Assist users with various queries and provide information and i´m still 5 days old but still growing"]
+    "about": ["My name is PyBot and was created by Umi Waqar Nedim, I Assist users with various queries and provide information"]
 }
     
 
@@ -75,12 +75,6 @@ motivation_and_study = {
         "Plan your study time in advance and stick to your schedule.",
         "Revise regularly instead of cramming at the last minute.",
         "Practice past exam questions to get comfortable with the format."
-    ],
-    "tip tips": [
-        "Manage your time well; an hour of focus is better than five of distraction.",
-        "Take short breaks — your brain needs rest to stay sharp!",
-        "Use the Pomodoro technique: 25 min study + 5 min break.",
-        "Make a checklist before studying; ticking off tasks feels rewarding."
     ],
     "focus concentrate": [
         "Eliminate distractions — put your phone away while studying.",
@@ -131,39 +125,6 @@ fallback_responses = [
     "That seems a bit unclear. Can you provide more details?",
     "I’m here to help, but I need a bit more context. What do you mean?"
 ]
-
-
-motivation_and_study = {"motivation motivate tip":["Never give up and keep work hard?"],
-                        "study help":["Create a dedicated study schedule to manage your time effectively.",
-                                    "Use active learning techniques, such as summarizing information or teaching it to someone else.",
-                                    "Take regular breaks to maintain focus and avoid burnout."],
-                        "focus focusing meditation":["take a deep breathe,  and focus on your goals",
-                                                      "Practice deep breathing for a few minutes to center your mind.",
-                                                              "Set a timer for short meditation sessions to build consistency."]}
-
-cities_weather = {"berlin weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"],
-"paris weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"],
-"rome weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"],
-"barcelona weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"],
-"london weather":["It is sunny, 20°C", "It is rainy, 10°C", "It is cloudy, 5°C", "It is windy 7°C", "It is snowy 0°C"]}
-
-
-
-food = {"breakfast":["Oatmeal with Fruits: Warm oatmeal topped with sliced bananas and berries.",
-                     "Scrambled Eggs: Fluffy scrambled eggs served with whole-grain toast."],
-        "lunch":["Caprese Salad: Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze.",
-                "Turkey Sandwich: Sliced turkey, lettuce, and tomato on whole grain bread."],
-        "dinner":["Grilled Chicken with Veggies: Marinated grilled chicken served with steamed vegetables.",
-                "Spaghetti Aglio e Olio: Spaghetti tossed with garlic, olive oil, and chili flakes."]}
-
-goodbye_greetings = {"goodbye": ["Goodbye! It was great chatting with you. Have a wonderful day!","See you later! Don't be a stranger!","Take care! Looking forward to our next conversation!","Farewell! Wishing you all the best until we chat again!"],
-                    "bye":["Goodbye! It was great chatting with you. Have a wonderful day!","See you later! Don't be a stranger!","Take care! Looking forward to our next conversation!","Farewell! Wishing you all the best until we chat again!"],
-                    "bye bye":["Goodbye! It was great chatting with you. Have a wonderful day!","See you later! Don't be a stranger!","Take care! Looking forward to our next conversation!","Farewell! Wishing you all the best until we chat again!"],
-                    "farewell":["Goodbye! It was great chatting with you. Have a wonderful day!","See you later! Don't be a stranger!","Take care! Looking forward to our next conversation!","Farewell! Wishing you all the best until we chat again!"]}
-
-fallback_responses = [ "That’s an interesting thought! Could you elaborate a bit more?",
-    "That seems a bit unclear. Can you provide more details?",
-    "I’m here to help, but I need a bit more context. What do you mean?"]
 
 
 timezones = {
@@ -380,7 +341,7 @@ class ChatbotGUI:
             if "name" in self.user_memory:
                 response = f"Your name is {self.user_memory['name'].capitalize()}"
             else:
-                response = "I don't know your name yet. You can tell me by saying 'my name is [your name]'."
+                response = "I don't know your name yet. You can tell me now."
 
         # Check for name setting
         elif "my name is" in user_input_lower:
