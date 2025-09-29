@@ -1,58 +1,51 @@
-# Python_Chatbot
+# PyBot – Python Chatbot with GUI  
 
-🤖 Python Chatbot
-🎯 Project Goal
-Work together as a team to design and build a chatbot in Python that can:
+🤖 **PyBot** is a Python-based chatbot with a **Tkinter graphical interface**. It can chat with users, answer questions, tell jokes, provide study motivation, give real-time weather & time, and perform simple math operations.  
 
-Greet users
+---
 
-Answer at least 10 different questions/keywords
+## ✨ Features  
 
-Include at least 2 special features (time, math, jokes, etc.)
+- **Interactive GUI** (Tkinter)  
+  - Black background, cyan bot text, white user text  
+  - Scrollable chat window  
+  - Typing animation for bot replies  
+  - Exit confirmation popup  
 
-Feel realistic by using random responses
+- **Conversation Skills**  
+  - Greetings (`hi`, `hello`, `good morning`, etc.)  
+  - Farewells (`bye`, `take care`, etc.)  
+  - Fun responses (jokes, random facts)  
+  - About chatbot (name, creator, purpose, skills)  
+  - Food suggestions (breakfast, lunch, dinner ideas)  
+  - Study & motivation tips (focus, meditation, study habits)  
 
-👥 Group Roles
-Each person will take on one role (or more if your group is small):
+- **Special Features**  
+  - 📅 **Time**: Ask *"time in Berlin"* or *"what time is it in Tokyo"*  
+  - 🌦️ **Weather**: Ask *"weather in London"* or *"temperature in New York"*  
+  - ➗ **Math**: Simple calculations like `2 + 2`, `10 * 5`, `3 ^ 4`  
 
-1. Conversation Designer
-Decide what the chatbot should be able to talk about.
+- **Memory**  
+  - Remembers your name if you say *“my name is Alex”*  
+  - Can recall with *“what is my name”*  
 
-Write at least 10 keywords/questions and their possible responses.
+- **Fallback Responses**  
+  - If PyBot doesn’t understand, it gives helpful clarification prompts.  
 
-Example:
+---
 
-"hello" → ["Hi!", "Hello there!", "Hey!"]
+## 📦 Requirements  
 
-2. Python Coder
-Build the chatbot’s main loop (input, exit, responses).
+Install dependencies using pip:  
+pip install pytz requests
 
-Connect the Conversation Designer’s responses to the code.
+Built-in Python modules (no need to install):
+tkinter (GUI)
+random, re, datetime, operator
 
-3. Feature Developer
-Add at least 2 extra features, such as:
+🧑‍💻 Authors
+Nedim
+Umi
+Waqar
 
-Tell the time (datetime)
-
-Do simple math (2+2, 10*5)
-
-Tell a joke
-
-Remember the user’s name
-
-📅 Timeline (1 Week)
-Day 1: Assign roles, brainstorm chatbot topics.
-
-Day 2: Conversation Designer creates responses. Python Coder sets up the chatbot.
-
-Day 3: Feature Developer adds special features.
-
-Day 4: Testing and fixing problems.
-
-Day 5: Group presentation.
-
-💡 Tips
-Be creative! Make your chatbot funny, themed (pirate, robot, celebrity), or helpful.
-
-Keep testing! Try uppercase, lowercase, or unexpected inputs.
-
+⚡ PyBot is a beginner-friendly yet powerful chatbot project with both learning and fun in mind.
